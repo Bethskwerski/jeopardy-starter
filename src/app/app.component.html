@@ -1,30 +1,24 @@
-<h3>
-Player's winnings: {{userScore}}
-</h3>
-<br>
-<h3>
-The Category is: {{questionInfo?.category.title}}
-</h3>
 <br>
 <h2>
-The question is: {{questionInfo?.question}}
+Player's winnings: {{userScore}}
 </h2>
-  <br>
-  <br>
-  <h3>
+<br>
+<h4>
+The Category is: {{questionInfo?.category.title}}
+</h4>
+<h4>
+The question is: {{questionInfo?.question}}
+</h4>
+  <h4>
 This question is worth:  {{questionInfo?.value}}
-</h3>
-  <hr>
+</h4>
   <br>
-<div>
- What is your answer? <input [(ngModel)]="usersAnswer" type = "text">
- <button (click)="isPopulated()">Submit Answer</button>
-</div>
   <br>
   <hr>
   <br>
   <div>
-<app-answer  [contestAnswer]="serviceAnswer"></app-answer>
+
+<app-answer (buttonClicked)="checkAnswer($event)" [contestAnswer]="serviceAnswer"></app-answer>
   
 </div>
 
