@@ -1,6 +1,6 @@
 <br>
 <h2>
-Player's winnings: {{userScore}}
+Player's winnings: {{scoreKeeper.usersScore}}
 </h2>
 <br>
 <h4>
@@ -18,10 +18,12 @@ This question is worth:  {{questionInfo?.value}}
   <br>
   <div>
 
-<app-answer (buttonClicked)="checkAnswer($event)" [contestAnswer]="serviceAnswer"></app-answer>
+<app-answer #scoreKeeper (nextQuestion)="getDataFromService()"[questionInfo]="questionInfo"></app-answer>
   
 </div>
-
+<h4>
+  The answer to the question is: {{questionInfo?.answer}}
+  </h4>
 
 
 

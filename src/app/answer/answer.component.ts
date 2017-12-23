@@ -6,9 +6,12 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
-@Input() contestAnswer: string;
-@Output() buttonClicked = new EventEmitter();
-usersAnswer: String;
+
+  @Input() questionInfo;
+  @Output() nextQuestion = new EventEmitter();
+  usersAnswer: String;
+  usersScore: number = 0;
+
 
   constructor() { }
 
@@ -17,15 +20,23 @@ usersAnswer: String;
     if (this.usersAnswer == undefined || this.usersAnswer == "") {
       alert("Please populate entry field");
     }
-    else {
-      this.buttonClicked.emit(this.usersAnswer);
-      this.usersAnswer = "";
-    }
+    this.checkAnswer();
   }
 
-  
+  checkAnswer(): void {
+    if (this.usersAnswer.toLowerCase() == this.questionInfo.answer.toLowerCase()) {
+      this.usersScore += this.questionInfo.value;
+    }
+    this.usersAnswer = "";
+    this.nextQuestion.emit();
+
+
+  }
+
 
   ngOnInit() {
-  }
 
+  }
 }
+
+
